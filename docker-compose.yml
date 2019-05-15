@@ -1,0 +1,37 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres:alpine
+    volumes:
+      - ./data/postgresql:/var/lib/mysql
+    restart: always
+    networks:
+      - private
+
+  wifipunch:
+    depends_on:
+      - db
+    build: .
+    #context: .
+    #dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    restart: always
+    # TODO: check if .env environment is passed to the container
+    # environment:
+    #   - SUBNET="${SUBNET}"
+    networks:
+      - private
+      - myvlan
+
+networks:
+  private:
+  # MacVlan so the container can sniff the network
+  myvlan:
+    driver: macvlan
+    driver_opts:
+      parent: "${INTERFACE}"
+    ipam:
+      config:
+        - subnet: "${SUBNET}"
