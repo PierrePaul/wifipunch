@@ -41,10 +41,10 @@ def print_result(results_list):
 
 options = get_arguments()
 if options.target is None:
-	local_ip = get_local_ip()
-	ip_range = local_ip[0:local_ip.rfind('.')] + '.0/24'
-	scan_result = scan(ip_range)
+    local_ip = get_local_ip()
+    ip_range = local_ip[0:local_ip.rfind('.')] + '.0/24'
+    scan_result = scan(ip_range)
 else:
-	scan_result = scan(options.target)
+    scan_result = scan(options.target)
 
 print_result(scan_result)
