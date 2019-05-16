@@ -1,3 +1,6 @@
 Flask==1.0.2
 scapy==2.4.2
 Flask-SQLAlchemy==2.4.0
+Flask-RESTful==0.3.7
+# Installed using apk in container
+psycopg2==2.8.2
