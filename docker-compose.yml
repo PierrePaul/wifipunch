@@ -15,12 +15,16 @@ services:
     build: .
     #context: .
     #dockerfile: Dockerfile
+    volumes:
+      - ./wifipunch:/wifipunch
     ports:
       - "8000:80"
     restart: always
     # TODO: check if .env environment is passed to the container
     # environment:
     #   - SUBNET="${SUBNET}"
+    environment:
+      - FLASK_ENV
     networks:
       - private
       - myvlan

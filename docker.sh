@@ -4,6 +4,9 @@
 source .env
 export INTERFACE
 export SUBNET
+if [ "$DEV" -eq 1 ]; then
+	export FLASK_ENV=development
+fi
 # echo $(envsubst < docker-compose.yml)
 # docker-compose -f <(envsubst < docker-compose.yml) $@
 docker-compose -f docker-compose.yml $@
