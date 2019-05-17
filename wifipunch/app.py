@@ -2,12 +2,14 @@
 from .discover import get_local_ip, scan
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_restful import Resource, fields, marshal_with
 
 app = Flask(__name__)
 app.config['DATABASE_URL'] = "postgresql://db/wifipunch"
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://db/wifipunch"
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 local_ip = get_local_ip()
 ip_range = local_ip[0:local_ip.rfind('.')] + '.0/24'
