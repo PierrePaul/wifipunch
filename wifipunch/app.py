@@ -42,17 +42,27 @@ class User(db.Model):
     )
 
 
+mac_fields = {
+    'mac_address': fields.String(
+        attribute='mac'
+    ),
+}
+
 user_fields = {
     'name': fields.String,
-    'mac_addresses': fields.List(
-        fields.String(attribute='mac'),
-    )
+    # 'mac_addresses': fields.List(
+    #     fields.Nested(mac_fields)
+    # ),
+}
+user_list_fields = {
+    fields.List(
+        fields.Nested(user_fields)
+    ),
 }
 
 
 @marshal_with(
     user_fields,
-    envelope='resource'
 )
 @app.route("/user", methods=['GET'])
 def list_users():
