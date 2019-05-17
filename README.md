@@ -2,19 +2,21 @@
 
 ## Dependencies
 
-- for building: docker, docker-compose, envsubst
+- for building: docker, docker-compose
 - for the code: see wifipunch/requirements.txt
 
 ## Docker
 
-a script `docker.sh` wraps docker compose so it can pass $INTERFACE and $SUBNET
-to compose. Those variables may change depending on the setup, they specify over
-which network interface to bridge with and on what subnet.
+Configure the environment variables:
+
+- `INTERFACE`: the network interface the container will bind on
+- `SUBNET`: the subnet the container will be connected to
+- `FLASK_ENV`: `production` or `development`
 
 ### Build
 
-- `./docker.sh build`: this will build the wifipunch container
+- `docker-compose build`: this will build the wifipunch container
 
 ### Run
 
-- `./docker.sh up`: this runs the db container and wifipunch
+- `docker-compose up`: this runs the db container and wifipunch
