@@ -1,9 +1,9 @@
 #!/bin/env python3
 from .discover import get_local_ip, scan
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_restful import Resource, fields, marshal_with
+from flask_restful import Resource, fields, marshal_with, marshal
 
 app = Flask(__name__)
 app.config['DATABASE_URL'] = "postgresql://wifipunch@db/wifipunch"
@@ -50,9 +50,9 @@ mac_fields = {
 
 user_fields = {
     'name': fields.String,
-    # 'mac_addresses': fields.List(
-    #     fields.Nested(mac_fields)
-    # ),
+    'mac_addresses': fields.List(
+        fields.Nested(mac_fields)
+    ),
 }
 user_list_fields = {
     fields.List(
@@ -61,23 +61,33 @@ user_list_fields = {
 }
 
 
-@marshal_with(
-    user_fields,
-)
+# @marshal_with(
+#     user_fields,
+# )
 @app.route("/user", methods=['GET'])
 def list_users():
     """
     """
     users = User.query.all()
-    return users
+    return jsonify(marshal(users, user_fields))
 
 
-@app.route("/user", methods=['POST'])
-def create_user():
+# @app.route("/user", methods=['POST'])
+# @marshal_with(
+#     user_fields,
+# )
+@app.route("/user/<username>", methods=['get'])
+def create_user(username):
     """
     """
-    users = []
-    return users
+    # TODO: POST + request.get_json()
+    user = User(
+        name=username
+    )
+    db.session.add(user)
+    db.session.commit()
+    # return user.name
+    return jsonify(marshal(user, user_fields))
 
 
 @app.route("/link", methods=['GET'])
