@@ -5,6 +5,11 @@
 - for building: docker, docker-compose
 - for the code: see wifipunch/requirements.txt
 
+## Database
+
+- `docker-compose exec wifipunch flask db migrate`
+- `docker-compose exec wifipunch flask db update`
+
 ## Docker
 
 Configure the environment variables:

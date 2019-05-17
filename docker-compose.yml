@@ -6,6 +6,8 @@ services:
     volumes:
       - ./data/postgresql:/var/lib/mysql
     restart: always
+    environment:
+      - POSTGRES_USER=wifipunch
     networks:
       - private
 
@@ -25,6 +27,7 @@ services:
     #   - SUBNET="${SUBNET}"
     environment:
       - FLASK_ENV
+      - FLASK_APP=/wifipunch/app.py
     networks:
       - private
       - myvlan

@@ -6,8 +6,8 @@ from flask_migrate import Migrate
 from flask_restful import Resource, fields, marshal_with
 
 app = Flask(__name__)
-app.config['DATABASE_URL'] = "postgresql://db/wifipunch"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://db/wifipunch"
+app.config['DATABASE_URL'] = "postgresql://wifipunch@db/wifipunch"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://wifipunch@db/wifipunch"
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
