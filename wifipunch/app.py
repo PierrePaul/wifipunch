@@ -18,7 +18,10 @@ ip_range = local_ip[0:local_ip.rfind('.')] + '.0/24'
 class MacAddress(db.Model):
     __tablename__ = 'macaddress'
     id = db.Column(db.Integer, primary_key=True)
-    mac = db.Column(db.String())
+    mac = db.Column(
+        db.String(),
+        unique=True,
+    )
 
 
 class TimeLog(db.Model):
@@ -30,7 +33,7 @@ class TimeLog(db.Model):
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String())
+    name = db.Column(db.String(), unique=True)
     # One to Many (macaddress)
     mac_addresses_id = db.Column(
         db.Integer,
@@ -81,12 +84,16 @@ def create_user(username):
     """
     """
     # TODO: POST + request.get_json()
-    user = User(
-        name=username
-    )
-    db.session.add(user)
-    db.session.commit()
-    # return user.name
+    user = User.query.filter(
+        User.name == username
+    ).all()
+    if not user:
+        user = User(
+            name=username
+        )
+        db.session.add(user)
+        db.session.commit()
+        # return user.name
     return jsonify(marshal(user, user_fields))
 
 
