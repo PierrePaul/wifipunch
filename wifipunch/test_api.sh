@@ -20,4 +20,4 @@ http POST $host/link mac_address=12:23:34:22:65 username=nobody
 http GET $host/mac
 
 # Testing Log API
-http GET $host/log
+http GET $host/mac/log

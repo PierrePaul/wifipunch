@@ -10,6 +10,10 @@
 - `docker-compose exec wifipunch flask db migrate`
 - `docker-compose exec wifipunch flask db update`
 
+## API
+
+- testing the API: `./test_api.sh [<IP:port (default: localhost)>]`
+
 ## Docker
 
 Configure the environment variables:
