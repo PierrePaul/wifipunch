@@ -103,7 +103,7 @@
   }
 ]
 
- // http POST 172.20.0.3:5000/link mac_address=12:23:34:22:55 username=test
+ // http POST 172.20.0.3:5000/link username=test
 {
   "mac_address": "12:23:34:22:55", 
   "user": "test"
