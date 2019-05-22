@@ -17,6 +17,7 @@ def get_my_mac():
     ip = "none"
     data = request.get_json()
     mac = False
+    user = False
     if data:
         mac = data.get('mac_address')
     if not mac:
@@ -25,7 +26,17 @@ def get_my_mac():
         scan_result = scan(ip_range)
         if len(scan_result):
             mac = scan_result[0]['mac']
-    return jsonify({'mac': mac, 'ip': ip, 'ip_range': ip_range})
+    if mac:
+        mac_address = MacAddress.find_one(mac)
+        if mac_address and mac_address.user:
+            user = mac_address.user.name
+    return jsonify(
+        {
+            'mac': mac,
+            'user': user,
+            'ip': ip,
+        }
+    )
 
 
 @mac.route("", methods=['GET'])
