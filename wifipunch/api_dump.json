@@ -1,0 +1,207 @@
+// http GET 172.20.0.3:5000/user
+[
+  {
+    "mac_addresses": [
+      {
+        "mac_address": "00:e0:4c:68:04:09", 
+        "user": "blob"
+      }
+    ], 
+    "name": "blob"
+  }, 
+  {
+    "mac_addresses": [], 
+    "name": "tnst"
+  }, 
+  {
+    "mac_addresses": [], 
+    "name": "abondis"
+  }, 
+  {
+    "mac_addresses": [
+      {
+        "mac_address": "12:23:34:22:55", 
+        "user": "test"
+      }, 
+      {
+        "mac_address": "12:23:34:22:65", 
+        "user": "test"
+      }
+    ], 
+    "name": "test"
+  }
+]
+
+// http POST 172.20.0.3:5000/user username=test
+[
+  {
+    "mac_addresses": [
+      {
+        "mac_address": "12:23:34:22:55", 
+        "user": "test"
+      }, 
+      {
+        "mac_address": "12:23:34:22:65", 
+        "user": "test"
+      }
+    ], 
+    "name": "test"
+  }
+]
+
+// http POST 172.20.0.3:5000/user username=test
+[
+  {
+    "mac_addresses": [
+      {
+        "mac_address": "12:23:34:22:55", 
+        "user": "test"
+      }, 
+      {
+        "mac_address": "12:23:34:22:65", 
+        "user": "test"
+      }
+    ], 
+    "name": "test"
+  }
+]
+
+// http GET 172.20.0.3:5000/user/test
+[
+  {
+    "mac_addresses": [
+      {
+        "mac_address": "12:23:34:22:55", 
+        "user": "test"
+      }, 
+      {
+        "mac_address": "12:23:34:22:65", 
+        "user": "test"
+      }
+    ], 
+    "name": "test"
+  }
+]
+
+// http GET 172.20.0.3:5000/link
+[
+  {
+    "mac_address": null, 
+    "user": null
+  }, 
+  {
+    "mac_address": "00:e0:4c:68:04:09", 
+    "user": "blob"
+  }, 
+  {
+    "mac_address": "12:23:34:22:55", 
+    "user": "test"
+  }, 
+  {
+    "mac_address": "12:23:34:22:65", 
+    "user": "test"
+  }
+]
+
+ // http POST 172.20.0.3:5000/link mac_address=12:23:34:22:55 username=test
+{
+  "mac_address": "12:23:34:22:55", 
+  "user": "test"
+}
+
+// http POST 172.20.0.3:5000/link mac_address=12:23:34:22:65 username=test
+{
+  "mac_address": "12:23:34:22:65", 
+  "user": "test"
+}
+
+// http POST 172.20.0.3:5000/link mac_address=12:23:34:22:65 username=nobody
+{}
+
+// http GET 172.20.0.3:5000/mac
+[
+  {
+    "ip": "192.168.42.5", 
+    "mac": "00:e0:4c:68:04:09"
+  }, 
+  {
+    "ip": "192.168.42.9", 
+    "mac": "00:e0:4c:68:04:09"
+  }
+]
+
+// http GET 172.20.0.3:5000/mac
+[
+  {
+    "ip": "192.168.42.5", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-21 17:08:32.157498", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.9", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-21 17:08:32.165325", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.5", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-21 17:09:52.253025", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.9", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-21 17:09:52.268361", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.5", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-21 17:10:05.652334", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.9", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-21 17:10:05.659442", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.5", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-21 18:24:45.883992", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.9", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-21 18:24:45.891672", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.5", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-22 14:12:53.299623", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.9", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-22 14:12:53.314387", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.5", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-22 14:13:21.443659", 
+    "user": "blob"
+  }, 
+  {
+    "ip": "192.168.42.9", 
+    "mac_address": "00:e0:4c:68:04:09", 
+    "time": "2019-05-22 14:13:21.461518", 
+    "user": "blob"
+  }
+]
