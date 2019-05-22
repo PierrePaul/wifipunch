@@ -4,6 +4,7 @@ from flask_restful import marshal
 from .marshal import mac_fields
 from ..models import MacAddress, User
 from ..models.extensions import db
+from ..utils.discover import scan
 
 link = Blueprint('link', __name__, url_prefix='/link')
 
@@ -20,14 +21,17 @@ def list_links():
 def create_link():
     """
     """
+    mac = False
     data = request.get_json()
-    mac = data.get('mac_address')
+    if data:
+        mac = data.get('mac_address')
+    if not mac:
+        ip = request.remote_addr
+        scan_result = scan(ip)
+        if len(scan_result):
+            mac = scan_result[0]['mac']
     username = data.get('username')
-    mac_address = MacAddress.query.filter(
-        MacAddress.mac_address == mac
-    ).first()
-    if not mac_address:
-        mac_address = MacAddress(mac_address=mac)
+    mac_address = MacAddress.find_one(mac)
     user = User.query.filter(
         User.name == username
     ).first()

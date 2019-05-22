@@ -17,3 +17,12 @@ class MacAddress(db.Model):
         'User',
         back_populates="mac_addresses"
     )
+
+    @classmethod
+    def find_one(cls, mac, create=True):
+        mac_address = cls.query.filter(
+            cls.mac_address == mac
+        ).first()
+        if not mac_address:
+            mac_address = cls(mac_address=mac)
+        return mac_address
