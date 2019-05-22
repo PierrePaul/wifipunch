@@ -1,3 +1,4 @@
+// http GET 172.20.0.3:5000/user
 [
   {
     "mac_addresses": [
@@ -30,6 +31,8 @@
     "name": "test"
   }
 ]
+
+// http POST 172.20.0.3:5000/user username=test
 [
   {
     "mac_addresses": [
@@ -45,6 +48,8 @@
     "name": "test"
   }
 ]
+
+// http POST 172.20.0.3:5000/user username=test
 [
   {
     "mac_addresses": [
@@ -60,6 +65,8 @@
     "name": "test"
   }
 ]
+
+// http GET 172.20.0.3:5000/user/test
 [
   {
     "mac_addresses": [
@@ -75,6 +82,8 @@
     "name": "test"
   }
 ]
+
+// http GET 172.20.0.3:5000/link
 [
   {
     "mac_address": null, 
@@ -93,15 +102,23 @@
     "user": "test"
   }
 ]
+
+ // http POST 172.20.0.3:5000/link mac_address=12:23:34:22:55 username=test
 {
   "mac_address": "12:23:34:22:55", 
   "user": "test"
 }
+
+// http POST 172.20.0.3:5000/link mac_address=12:23:34:22:65 username=test
 {
   "mac_address": "12:23:34:22:65", 
   "user": "test"
 }
+
+// http POST 172.20.0.3:5000/link mac_address=12:23:34:22:65 username=nobody
 {}
+
+// http GET 172.20.0.3:5000/mac
 [
   {
     "ip": "192.168.42.5", 
@@ -112,6 +129,8 @@
     "mac": "00:e0:4c:68:04:09"
   }
 ]
+
+// http GET 172.20.0.3:5000/mac
 [
   {
     "ip": "192.168.42.5", 
