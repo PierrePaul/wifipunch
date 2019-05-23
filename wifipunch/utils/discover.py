@@ -6,6 +6,7 @@ from datetime import datetime
 from scapy.all import srp,Ether,ARP
 import socket
 
+
 def get_local_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("10.255.255.255", 80))
@@ -13,12 +14,14 @@ def get_local_ip():
     s.close()
     return local_ip
 
+
 def get_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--target", dest="target",
                         help="Target IP/IP Range")
     options = parser.parse_args()
     return options
+
 
 def scan(ip=None):
     if ip is None:
@@ -33,18 +36,21 @@ def scan(ip=None):
         clients_list.append(client_dict)
     return clients_list
 
+
 def print_result(results_list):
         print("IP\t\t\tMAC Address")
         print("----------------------------------------------------")
         for client in results_list:
             print(client["ip"] + "\t\t" + client["mac"])
 
-options = get_arguments()
-if options.target is None:
-	local_ip = get_local_ip()
-	ip_range = local_ip[0:local_ip.rfind('.')] + '.0/24'
-	scan_result = scan(ip_range)
-else:
-	scan_result = scan(options.target)
 
-print_result(scan_result)
+if __name__ == "__main__":
+    options = get_arguments()
+    if options.target is None:
+        local_ip = get_local_ip()
+        ip_range = local_ip[0:local_ip.rfind('.')] + '.0/24'
+        scan_result = scan(ip_range)
+    else:
+        scan_result = scan(options.target)
+
+    print_result(scan_result)

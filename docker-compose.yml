@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:alpine
+    volumes:
+      - ./data/postgresql:/var/lib/mysql
+    restart: always
+    environment:
+      - POSTGRES_USER=wifipunch
+    networks:
+      - private
+
+  wifipunch:
+    depends_on:
+      - db
+    build: .
+    #context: .
+    #dockerfile: Dockerfile
+    volumes:
+      - "${VOLUME_PATH}wifipunch:/wifipunch"
+    ports:
+      - "5000:5000"
+    restart: always
+    # TODO: check if .env environment is passed to the container
+    # environment:
+    #   - SUBNET="${SUBNET}"
+    environment:
+      - FLASK_ENV
+      - FLASK_APP=/wifipunch/app.py
+    networks:
+      private:
+      myvlan:
+        ipv4_address: "${IP_ADDR}"
+        
+volumes:
+  wifipunch:
+
+networks:
+  private:
+  # MacVlan so the container can sniff the network
+  myvlan:
+    driver: macvlan
+    driver_opts:
+      parent: "${INTERFACE}"
+    ipam:
+      config:
+        - subnet: "${SUBNET}"
+          gateway: "${GATEWAY}"

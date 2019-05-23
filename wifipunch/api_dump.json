@@ -1,0 +1,149 @@
+// http -b GET 192.168.42.25:5000/user
+[
+  {
+    "mac_addresses": [
+      {
+        "mac_address": "00:01:2e:6f:84:60", 
+        "user": "test"
+      }, 
+      {
+        "mac_address": "12:23:34:22:65", 
+        "user": "test"
+      }
+    ], 
+    "name": "test"
+  }
+]
+// http -b POST 192.168.42.25:5000/user username=test
+[
+  {
+    "mac_addresses": [
+      {
+        "mac_address": "00:01:2e:6f:84:60", 
+        "user": "test"
+      }, 
+      {
+        "mac_address": "12:23:34:22:65", 
+        "user": "test"
+      }
+    ], 
+    "name": "test"
+  }
+]
+// http -b POST 192.168.42.25:5000/user username=test
+[
+  {
+    "mac_addresses": [
+      {
+        "mac_address": "00:01:2e:6f:84:60", 
+        "user": "test"
+      }, 
+      {
+        "mac_address": "12:23:34:22:65", 
+        "user": "test"
+      }
+    ], 
+    "name": "test"
+  }
+]
+// http -b GET 192.168.42.25:5000/user/test
+[
+  {
+    "mac_addresses": [
+      {
+        "mac_address": "00:01:2e:6f:84:60", 
+        "user": "test"
+      }, 
+      {
+        "mac_address": "12:23:34:22:65", 
+        "user": "test"
+      }
+    ], 
+    "name": "test"
+  }
+]
+// http -b GET 192.168.42.25:5000/link
+[
+  {
+    "mac_address": "00:01:2e:6f:84:60", 
+    "user": "test"
+  }, 
+  {
+    "mac_address": "12:23:34:22:65", 
+    "user": "test"
+  }
+]
+// http -b POST 192.168.42.25:5000/link username=test
+{
+  "mac_address": "00:01:2e:6f:84:60", 
+  "user": "test"
+}
+// http -b POST 192.168.42.25:5000/link mac_address=12:23:34:22:65 username=test
+{
+  "mac_address": "12:23:34:22:65", 
+  "user": "test"
+}
+// http -b POST 192.168.42.25:5000/link mac_address=12:23:34:22:65 username=nobody
+{}
+// http -b GET 192.168.42.25:5000/mac
+[
+  {
+    "ip": "192.168.42.205", 
+    "mac": "00:01:2e:6f:84:60"
+  }
+]
+// http -b GET 192.168.42.25:5000/mac/mine
+{
+    "ip": "192.168.42.205", 
+    "user": "test", 
+    "mac": "00:01:2e:6f:84:60"
+}
+
+// http -b POST 192.168.42.25:5000/mac/log
+[
+  {
+    "ip": "192.168.42.205", 
+    "mac_address": "00:01:2e:6f:84:60", 
+    "time": "2019-05-22 17:03:28.424729", 
+    "user": "test"
+  }
+]
+// http -b GET 192.168.42.25:5000/mac/log
+[
+  {
+    "ip": "192.168.42.205", 
+    "mac_address": "00:01:2e:6f:84:60", 
+    "time": "2019-05-22 16:07:43.747839", 
+    "user": "test"
+  }, 
+  {
+    "ip": "192.168.42.205", 
+    "mac_address": "00:01:2e:6f:84:60", 
+    "time": "2019-05-22 16:18:14.145782", 
+    "user": "test"
+  }, 
+  {
+    "ip": "192.168.42.205", 
+    "mac_address": "00:01:2e:6f:84:60", 
+    "time": "2019-05-22 16:59:48.522007", 
+    "user": "test"
+  }, 
+  {
+    "ip": "192.168.42.205", 
+    "mac_address": "00:01:2e:6f:84:60", 
+    "time": "2019-05-22 17:01:56.532101", 
+    "user": "test"
+  }, 
+  {
+    "ip": "192.168.42.205", 
+    "mac_address": "00:01:2e:6f:84:60", 
+    "time": "2019-05-22 17:02:20.491024", 
+    "user": "test"
+  }, 
+  {
+    "ip": "192.168.42.205", 
+    "mac_address": "00:01:2e:6f:84:60", 
+    "time": "2019-05-22 17:03:28.424729", 
+    "user": "test"
+  }
+]
