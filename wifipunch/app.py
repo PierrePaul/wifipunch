@@ -1,5 +1,5 @@
 #!/bin/env python3
-from flask import Flask
+from flask import Flask, send_file, send_from_directory
 from flask_migrate import Migrate
 from .models.extensions import db
 from .api import mac_blueprint, user_blueprint, link_blueprint
@@ -20,4 +20,15 @@ def create_app(config=None):
     Migrate(app, db)
     return app
 
+
 app = create_app()
+
+
+@app.route('/')
+def root():
+    return send_file('/frontend/index.html')
+
+
+@app.route('/_nuxt/<path:path>')
+def send_js(path):
+    return send_from_directory('/frontend/_nuxt', path)
