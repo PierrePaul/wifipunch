@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import jsonify, Blueprint, request
 from flask_restful import marshal
 from ..utils.discover import get_local_ip, scan
@@ -52,17 +53,20 @@ def list_macs():
 def write_log():
     scan_result = scan(ip_range)
     logs = []
+    time = datetime.now()
     for result in scan_result:
         mac = result['mac']
         mac_address = MacAddress.find_one(mac)
         db.session.add(mac_address)
-        user = mac_address.user
-        if user:
-            user = user.name
+        db_user = mac_address.user
+        if db_user:
+            user = db_user.name
+            db_user.last_seen = time
         log = TimeLog(
             mac_address=mac_address.mac_address,
             ip=result['ip'],
-            user=user
+            user=user,
+            time=time,
         )
         db.session.add(log)
         logs += [log]

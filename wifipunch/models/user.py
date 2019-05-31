@@ -9,3 +9,7 @@ class User(db.Model):
         "MacAddress",
         back_populates="user"
     )
+
+    last_seen = db.Column(
+        db.DateTime,
+    )
