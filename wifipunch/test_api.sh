@@ -26,6 +26,9 @@ $get/mac/mine
 # Testing Log API
 $post/mac/log
 $get/mac/log
+
+# Testing reporting
+$get/report
 "|grep -v -e '^#' -e '^ *$')
 
 oIFS=$IFS
