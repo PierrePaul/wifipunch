@@ -31,14 +31,7 @@ def create_user():
     """
     data = request.get_json()
     username = data.get('username')
-    user = User.query.filter(
-        User.name == username
-    ).all()
-    if not user:
-        user = User(
-            name=username
-        )
-        db.session.add(user)
-        db.session.commit()
-        # return user.name
+    user = User.get_or_create(
+        username=username
+    )
     return jsonify(marshal(user, user_fields))
