@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 
 services:
   db:
@@ -29,10 +29,10 @@ services:
       - FLASK_ENV
       - FLASK_APP=/wifipunch/app.py
     networks:
-      private:
-      myvlan:
-        ipv4_address: "${IP_ADDR}"
-        
+      - private
+      # myvlan:
+      # ipv4_address: "${IP_ADDR}"
+
 volumes:
   wifipunch:
 
