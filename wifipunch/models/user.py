@@ -9,3 +9,17 @@ class User(db.Model):
         "MacAddress",
         back_populates="user"
     )
+
+    @classmethod
+    def get_or_create(cls, *args, **kwargs):
+        username = kwargs.get('username')
+        user = False
+        if username:
+            user = User.query.filter(
+                User.name == username
+            ).first()
+        if not user:
+            user = cls(**kwargs)
+            db.session.add(user)
+            db.session.commit()
+        return user
