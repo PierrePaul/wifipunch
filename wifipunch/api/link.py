@@ -32,9 +32,9 @@ def create_link():
             mac = scan_result[0]['mac']
     username = data.get('username')
     mac_address = MacAddress.find_one(mac)
-    user = User.query.filter(
-        User.name == username
-    ).first()
+    user = User.get_or_create(
+        username=username
+    )
     if user:
         mac_address.user = user
         db.session.add(mac_address)
