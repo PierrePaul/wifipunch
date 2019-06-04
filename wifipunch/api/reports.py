@@ -131,8 +131,8 @@ def report(period):
 
 def send_report(report_data, dates):
     # TODO: send message
-    email_from = os.environ.get('FROM_EMAIL'))
-    email_to = os.environ.get('TO_EMAIL'))
+    email_from = os.environ.get('FROM_EMAIL')
+    email_to = os.environ.get('TO_EMAIL')
     message = Mail(
         from_email=email_from,
         to_emails=email_to,

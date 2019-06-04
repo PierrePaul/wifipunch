@@ -27,6 +27,9 @@ services:
     #   - SUBNET="${SUBNET}"
     environment:
       - FLASK_ENV
+      - FROM_EMAIL
+      - TO_EMAIL
+      - SENDGRID_API_KEY
       - FLASK_APP=/wifipunch/app.py
     networks:
       private:
