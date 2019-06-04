@@ -6,3 +6,7 @@ Flask-RESTful==0.3.7
 psycopg2==2.8.2
 Flask-Migrate==2.4.0
 httpie==1.0.2
+ipython
+ipdb
+flask-shell-ipython
+sendgrid

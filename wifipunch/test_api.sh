@@ -28,7 +28,11 @@ $post/mac/log
 $get/mac/log
 
 # Testing reporting
-$get/report
+$get/report send=false
+$get/report start= stop=2019-07-20 send=false
+$get/report start=2019-05-20 stop=2019-07-20 send=false
+$get/report stop=2019-07-20 send=false
+$get/report delta=todate send=false
 "|grep -v -e '^#' -e '^ *$')
 
 oIFS=$IFS
