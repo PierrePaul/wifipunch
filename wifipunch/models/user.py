@@ -11,15 +11,14 @@ class User(db.Model):
     )
 
     @classmethod
-    def get_or_create(cls, *args, **kwargs):
-        username = kwargs.get('username')
+    def get_or_create(cls, username):
         user = False
         if username:
             user = User.query.filter(
                 User.name == username
             ).first()
         if not user:
-            user = cls(**kwargs)
+            user = cls(name=username)
             db.session.add(user)
             db.session.commit()
         return user
