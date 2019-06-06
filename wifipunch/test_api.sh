@@ -28,11 +28,16 @@ $post/mac/log
 $get/mac/log
 
 # Testing reporting
+# pass api_key, else nothing will append
+# Do not send an email
 $get/report send=false
-$get/report start= stop=2019-07-20 send=false
-$get/report start=2019-05-20 stop=2019-07-20 send=false
-$get/report stop=2019-07-20 send=false
-$get/report delta=todate send=false
+# Search until a certain date
+$get/report start= stop=2019-07-20 send=false api_key=SomethingReallyCustom
+# Search between a custom period api_key=SomethingReallyCustom
+$get/report start=2019-05-20 stop=2019-07-20 send=false api_key=SomethingReallyCustom
+$get/report stop=2019-07-20 send=false api_key=SomethingReallyCustom
+$get/report delta=todate send=false api_key=SomethingReallyCustom
+
 "|grep -v -e '^#' -e '^ *$')
 
 oIFS=$IFS

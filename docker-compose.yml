@@ -30,6 +30,7 @@ services:
       - FROM_EMAIL
       - TO_EMAIL
       - SENDGRID_API_KEY
+      - WIFIPUNCH_API_KEY
       - FLASK_APP=/wifipunch/app.py
     networks:
       private:

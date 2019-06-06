@@ -55,12 +55,17 @@ def get_report_period(delta='week', start=None, stop=None):
 
 @report_blueprint.route("", methods=['GET'])
 def get_report():
+
+    api_key = os.environ.get('WIFIPUNCH_API_KEY')
     data = request.get_json() or {}
     send = True
     delta = data.get('delta', 'week')
     start = data.get('start')
     stop = data.get('stop')
     send = data.get('send', send)
+    key = data.get('api_key')
+    if not key or api_key != key:
+        return "Operation Not Permitted"
     period = get_report_period(delta, start, stop)
     current_app.logger.info(period)
 
