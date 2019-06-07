@@ -1,5 +1,7 @@
 # WifiPunch
 
+`git clone --recurse-submodules  git@git.fixrs.ca:evolvingweb/wifipunch.git`
+
 ## Dependencies
 
 - for building: docker, docker-compose

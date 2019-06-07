@@ -13,3 +13,15 @@ class User(db.Model):
     last_seen = db.Column(
         db.DateTime,
     )
+    @classmethod
+    def get_or_create(cls, username):
+        user = False
+        if username:
+            user = User.query.filter(
+                User.name == username
+            ).first()
+        if not user:
+            user = cls(name=username)
+            db.session.add(user)
+            db.session.commit()
+        return user
