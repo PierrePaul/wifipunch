@@ -130,6 +130,7 @@ def report(period):
                             prev.time.date().isoformat(),
                             total
                     ])
+                    total = 0.0
                 prev = entry
     return report_file
 
