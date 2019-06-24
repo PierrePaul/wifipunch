@@ -26,6 +26,10 @@ Configure the environment variables (see .env, dev.env.fish, pi.env.fish):
 - `GATEWAY`: gateway the container should use to communicate with the network
 - `FLASK_ENV`: `production` or `development`
 - `VOLUME_PATH`: set to `""` if deploying remotely, or `./` if using locally
+- `SENDGRID_API_KEY`: Sendgrid API Key
+- `FROM_EMAIL`: email to send from
+- `TO_EMAIL`: email to send from
+- `WIFIPUNCH_API_KEY`: api key to accept for sending reports
 
 ### Build
 
@@ -39,3 +43,9 @@ Configure the environment variables (see .env, dev.env.fish, pi.env.fish):
 
 - set `DOCKER_HOST` to `ssh://<user>@<rpi IP>`
 - run `docker-compose up -d`
+- create a cron to send reports, ie `0 2 * * * http localhost:5000/reports api_key=SomethingReallyCustom`
+
+
+### Troubleshooting
+
+- if the container cannot access internet (ie: can't send emails), it could be due to the `$GATEWAY` improperly set. To verify run `docker-compose exec wifipunch ip ro` and check that it matches. If not, you will have to `docker-compose down`, source the variable file and call `up` again.

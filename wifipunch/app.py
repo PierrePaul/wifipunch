@@ -3,7 +3,12 @@ from flask import Flask, send_file, send_from_directory
 from flask_migrate import Migrate
 from flask_cors import CORS
 from .models.extensions import db
-from .api import mac_blueprint, user_blueprint, link_blueprint
+from .api import (
+    mac_blueprint,
+    user_blueprint,
+    link_blueprint,
+    report_blueprint
+)
 
 
 def create_app(config=None):
@@ -18,6 +23,7 @@ def create_app(config=None):
     app.register_blueprint(mac_blueprint)
     app.register_blueprint(user_blueprint)
     app.register_blueprint(link_blueprint)
+    app.register_blueprint(report_blueprint)
     db.init_app(app)
     Migrate(app, db)
     return app

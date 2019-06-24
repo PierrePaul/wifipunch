@@ -10,6 +10,9 @@ class User(db.Model):
         back_populates="user"
     )
 
+    last_seen = db.Column(
+        db.DateTime,
+    )
     @classmethod
     def get_or_create(cls, username):
         user = False
