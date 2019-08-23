@@ -1,7 +1,7 @@
 #!/bin/sh
 host=$1
 if [ "x_$host" = "x_" ]; then
-    host="localhost:5000"
+    host="172.168.238.3:5000"
 fi
 get="http -b GET $host"
 post="http -b POST $host"
