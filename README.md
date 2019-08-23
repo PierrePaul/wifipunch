@@ -43,7 +43,9 @@ Configure the environment variables (see .env, dev.env.fish, pi.env.fish):
 
 - set `DOCKER_HOST` to `ssh://<user>@<rpi IP>`
 - run `docker-compose up -d`
-- create a cron to send reports, ie `0 2 * * * http localhost:5000/reports api_key=SomethingReallyCustom`
+- create crons:
+  - to send reports, ie `0 2 * * * http 172.16.238.3:5000/reports api_key=SomethingReallyCustom`
+  - to scan the network, ie `0 2 * * * http post 172.16.238.3:5000/mac/log`
 
 
 ### Troubleshooting

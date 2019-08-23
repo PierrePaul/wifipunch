@@ -62,6 +62,8 @@ def write_log():
         if db_user:
             user = db_user.name
             db_user.last_seen = time
+        else:
+            user = "Unknown User"
         log = TimeLog(
             mac_address=mac_address.mac_address,
             ip=result['ip'],

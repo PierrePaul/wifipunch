@@ -5,7 +5,7 @@ COPY ${uipath}/package-lock.json /${uipath}/package-lock.json
 WORKDIR /${uipath}
 RUN npm install
 COPY ${uipath} /${uipath}
-RUN sed -i '/baseURL/d' services/UserServices.js
+# RUN sed -i '/baseURL/d' services/UserServices.js
 RUN npm run build --verbose
 
 FROM python:3.6-alpine

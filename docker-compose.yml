@@ -9,7 +9,8 @@ services:
     environment:
       - POSTGRES_USER=wifipunch
     networks:
-      - private
+      private:
+        ipv4_address: 172.16.238.2
 
   wifipunch:
     depends_on:
@@ -33,15 +34,23 @@ services:
       - WIFIPUNCH_API_KEY
       - FLASK_APP=/wifipunch/app.py
     networks:
-      - private
-      # myvlan:
-      # ipv4_address: "${IP_ADDR}"
+      private:
+        ipv4_address: 172.16.238.3
+      myvlan:
+        ipv4_address: "${IP_ADDR}"
 
 volumes:
   wifipunch:
 
 networks:
+  # Private network with static IPs so we can call the cron
   private:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.238.0/24
+        gateway: 172.16.238.1
   # MacVlan so the container can sniff the network
   myvlan:
     driver: macvlan
