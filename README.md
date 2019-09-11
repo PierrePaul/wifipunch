@@ -16,6 +16,17 @@
 
 - testing the API: `./test_api.sh [<IP:port (default: localhost)>]`
 
+## ENV file
+
+Copy one of the following file, depending on your shell : 
+
+- `.env.sample` to `.env` if you are using bash
+- `dev.env.fish` to `.env` if you are using fish
+
+This file will be automatically loaded by `docker-composer` when you start the services.
+
+There is also a `pi.env.fish` if you are deploying to a remote docker host.
+
 ## Docker
 
 Configure the environment variables (see .env, dev.env.fish, pi.env.fish):
