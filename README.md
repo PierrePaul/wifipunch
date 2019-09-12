@@ -1,6 +1,6 @@
 # WifiPunch
 
-`git clone --recurse-submodules  git@git.fixrs.ca:evolvingweb/wifipunch.git`
+`git clone --recurse-submodules git@github.com:PierrePaul/wifipunch.git`
 
 ## Dependencies
 
