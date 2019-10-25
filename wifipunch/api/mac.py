@@ -1,3 +1,4 @@
+import socket
 from datetime import datetime
 from flask import jsonify, Blueprint, request
 from flask_restful import marshal
@@ -69,6 +70,7 @@ def write_log():
             ip=result['ip'],
             user=user,
             time=time,
+            hostname=socket.getfqdn(result['ip'])
         )
         db.session.add(log)
         logs += [log]
