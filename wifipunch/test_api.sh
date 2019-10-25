@@ -24,7 +24,7 @@ $get/mac
 $get/mac/mine
 
 # Testing Log API
-$post/mac/log
+$post/mac/log api_key=SomethingReallyCustom
 $get/mac/log
 
 # Testing reporting
