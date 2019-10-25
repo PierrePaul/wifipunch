@@ -11,3 +11,4 @@ ipython
 ipdb
 flask-shell-ipython
 sendgrid
+timeout-decorator==0.4.1

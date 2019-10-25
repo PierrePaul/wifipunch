@@ -3,8 +3,13 @@
 import sys
 import argparse
 from datetime import datetime
-from scapy.all import srp,Ether,ARP
+from scapy.all import srp, Ether, ARP
 import socket
+import timeout_decorator
+
+
+class GetHostnameTimeOutException(Exception):
+    pass
 
 
 def get_local_ip():
@@ -34,7 +39,23 @@ def scan(ip=None):
     for element in answered_list:
         client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc}
         clients_list.append(client_dict)
+    for client in clients_list:
+        client['hostname'] = get_hostname(client.get('ip'))
+
     return clients_list
+
+
+def get_hostname(ip):
+    try:
+        hostname = _get_hostname(ip)
+    except GetHostnameTimeOutException:
+        hostname = ip
+    return hostname
+
+
+@timeout_decorator.timeout(0.1, use_signals=False, timeout_exception=GetHostnameTimeOutException)
+def _get_hostname(ip):
+    return socket.getfqdn(ip)
 
 
 def print_result(results_list):

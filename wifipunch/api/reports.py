@@ -16,7 +16,7 @@ max_delta = timedelta(minutes=15)
 report_blueprint = Blueprint('report', __name__, url_prefix='/report')
 
 
-csv_fields = ["user", "period", "total_time"]
+csv_fields = ["user", "hostname", "period", "total_time"]
 
 
 def get_report_period(delta='week', start=None, stop=None):
@@ -127,6 +127,7 @@ def report(period):
                 if entry == last or date_changed:
                     report_file.append([
                             user.name,
+                            entry.hostname,
                             prev.time.date().isoformat(),
                             total
                     ])
