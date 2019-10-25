@@ -77,7 +77,6 @@ def write_log():
             ip=result['ip'],
             user=user,
             time=time,
-            hostname=socket.getfqdn(result['ip'])
         )
         db.session.add(log)
         logs += [log]
