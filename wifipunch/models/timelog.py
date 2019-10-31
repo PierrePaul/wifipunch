@@ -18,3 +18,4 @@ class TimeLog(db.Model):
         db.String(),
     )
     ip = db.Column(db.String())
+    hostname = db.Column(db.String())
