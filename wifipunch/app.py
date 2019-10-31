@@ -15,9 +15,6 @@ def create_app(config=None):
     app = Flask(__name__)
     CORS(app)
     app.config[
-        'DATABASE_URL'
-    ] = "postgresql://wifipunch@db/wifipunch"
-    app.config[
         'SQLALCHEMY_DATABASE_URI'
     ] = "postgresql://wifipunch@db/wifipunch"
     app.register_blueprint(mac_blueprint)

@@ -1,7 +1,8 @@
+import socket
 from datetime import datetime
 from flask import jsonify, Blueprint, request
 from flask_restful import marshal
-from ..utils.discover import get_local_ip, scan
+from ..utils.discover import get_local_ip, scan, get_hostname
 from .marshal import logs_fields
 from ..models import MacAddress, TimeLog
 from ..models.extensions import db
@@ -36,6 +37,7 @@ def get_my_mac():
             'mac': mac,
             'user': user,
             'ip': ip,
+            'hostname': get_hostname(ip),
         }
     )
 
@@ -69,6 +71,7 @@ def write_log():
             ip=result['ip'],
             user=user,
             time=time,
+            hostname=get_hostname(result['ip'])
         )
         db.session.add(log)
         logs += [log]

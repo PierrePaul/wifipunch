@@ -22,4 +22,5 @@ logs_fields = {
     'mac_address': fields.String,
     'user': fields.String,
     'ip': fields.String,
+    'hostname': fields.String,
 }
