@@ -1,8 +1,7 @@
-
 from base64 import b64encode
 import csv
 from datetime import timedelta, datetime
-from flask import jsonify, Blueprint, current_app, request
+from flask import jsonify, Blueprint, current_app, request, abort
 from io import StringIO
 import os
 from sendgrid import SendGridAPIClient
@@ -55,7 +54,6 @@ def get_report_period(delta='week', start=None, stop=None):
 
 @report_blueprint.route("", methods=['GET'])
 def get_report():
-
     api_key = os.environ.get('WIFIPUNCH_API_KEY')
     data = request.get_json() or {}
     send = True
@@ -65,7 +63,7 @@ def get_report():
     send = data.get('send', send)
     key = data.get('api_key')
     if not key or api_key != key:
-        return "Operation Not Permitted"
+        abort(403, "Operation not permitted.")
     period = get_report_period(delta, start, stop)
     current_app.logger.info(period)
 

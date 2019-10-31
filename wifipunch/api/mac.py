@@ -1,6 +1,7 @@
 import socket
+import os
 from datetime import datetime
-from flask import jsonify, Blueprint, request
+from flask import jsonify, Blueprint, request, abort
 from flask_restful import marshal
 from ..utils.discover import get_local_ip, scan, get_hostname
 from .marshal import logs_fields
@@ -53,6 +54,12 @@ def list_macs():
 
 @mac.route("/log", methods=['POST'])
 def write_log():
+    api_key = os.environ.get('WIFIPUNCH_API_KEY')
+    data = request.get_json() or {}
+    key = data.get('api_key')
+    if not key or api_key != key:
+        abort(403, "Operation not permitted.")
+
     scan_result = scan(ip_range)
     logs = []
     time = datetime.now()
