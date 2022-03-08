@@ -6,7 +6,7 @@ Flask-RESTful==0.3.7
 # Installed using apk in container
 psycopg2==2.8.2
 Flask-Migrate==2.4.0
-httpie==1.0.3
+httpie==3.1.0
 ipython
 ipdb
 flask-shell-ipython
